@@ -16,12 +16,12 @@ local mode
 
 local modem
 local reactor
-local capacitor = {isThere=false, size=9}
+local capacitor = {isThere=false}
 local timerID
 local errors = ""
 
 function calcCapacitorFlux()
-  local tempCapacitorRF = capacitor.component.getEnergyStored(1)*capacitor.size
+  local tempCapacitorRF = capacitor.component.getEnergyStored(1)
   capacitor.flux =  tempCapacitorRF - capacitor.rf
   capacitor.rf = tempCapacitorRF
 end
@@ -51,12 +51,12 @@ function init()
     errors = errors .. "Please insert a (Wireless) Network Card"
   end
 
-  if (component.isAvailable("tile_blockcapacitorbank_name")) then
+  if (component.isAvailable("capacitor_bank")) then
     capacitor.isThere = true
     capacitor.component = component.tile_blockcapacitorbank_name
-    capacitor.rf = capacitor.component.getEnergyStored(1)*capacitor.size
+    capacitor.rf = capacitor.component.getEnergyStored(1)
     capacitor.flux = 0
-    capacitor.max = capacitor.component.getMaxEnergyStored(1)*capacitor.size
+    capacitor.max = capacitor.component.getMaxEnergyStored(1)
     capacitorTimerID = event.timer(1, calcCapacitorFlux, math.huge)
   else
 
