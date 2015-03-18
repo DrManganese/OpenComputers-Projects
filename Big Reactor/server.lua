@@ -53,7 +53,7 @@ function init()
 
   if (component.isAvailable("capacitor_bank")) then
     capacitor.isThere = true
-    capacitor.component = component.tile_blockcapacitorbank_name
+    capacitor.component = component.capacitor_bank
     capacitor.rf = capacitor.component.getEnergyStored(1)
     capacitor.flux = 0
     capacitor.max = capacitor.component.getMaxEnergyStored(1)
